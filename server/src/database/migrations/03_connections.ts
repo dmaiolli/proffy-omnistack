@@ -5,8 +5,7 @@ export async function up(knex: Knex){
     return knex.schema.createTable('connections', table => {
         table.increments('id').primary();
         
-        table.timestamp('created_at').defaultTo('now()').notNullable();
-
+        
         // Criando um relacionamento com a tabela users, cada aula terá um professor
         table.integer('user_id')
             .notNullable()
@@ -14,6 +13,10 @@ export async function up(knex: Knex){
             .inTable('users')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
+
+        table.timestamp('created_at')
+            .defaultTo(knex.raw('CURRENT_TIMESTAMP'))
+            .notNullable();
     });
 }
 // Excluindo tabela caso algo ocorra errado
