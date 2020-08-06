@@ -12,6 +12,7 @@ import warningIcon from '../../assets/images/icons/warning.svg'
 import api from '../../services/api';
 
 function TeacherForm(){
+    
     const history = useHistory();
 
     const [name, setName] = useState('');
